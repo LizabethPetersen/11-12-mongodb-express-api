@@ -1,22 +1,7 @@
-# DATA STRUCTURES AND ALGORITHMS TEMPLATE README
+# LAB 11-Express
+
 ## Travis Badge
-<!-- YOUR TRAVIS CI BADGE HERE -->
-
-## Challenge
-<!-- YOUR PROBLEM DOMAIN HERE -->
-
-## Whiteboarding Solution:
- <!--YOUR GITHUB IMAGE URL BELOW  -->
-![alt text](YOUR-IMAGE-URL-HERE.jpg)
-
-## Code Solution
-<!-- YOUR CODE HERE -->
-
-<!-- ====================================================================== -->
-
-# LAB TEMPLATE README
-## Travis Badge
-<!-- YOUR TRAVIS CI BADGE HERE -->
+[![Build Status](https://travis-ci.org/LizabethPetersen/11-12-mongodb-express-api.svg?branch=master)](https://travis-ci.org/LizabethPetersen/11-12-mongodb-express-api)
 
 ## Code
 <!-- YOUR CODE DESCRIPTION HERE -->
