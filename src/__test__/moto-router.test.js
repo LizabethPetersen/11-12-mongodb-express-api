@@ -23,8 +23,9 @@ afterEach(() => Note.remove({}));
 describe('Tests POST requests to /api/v1/motorcycles', () => {
   test('Send 200 for successful build of motorcycle object', () => {
     const mockMotoToPost = {
-      make: faker.lorem.words(2),
-      model: faker.lorem.words(7),
+      make: faker.lorem.words(3),
+      model: faker.lorem.words(3),
+      user: faker.lorem.word(1),
     };
     return superagent.post(apiUrl)
       .send(mockMotoToPost)
@@ -43,7 +44,7 @@ describe('Tests POST requests to /api/v1/motorcycles', () => {
 
   test('Send 400 for not including a required MAKE property', () => {
     const mockMotoToPost = {
-      model: faker.lorem.words(7),
+      model: faker.lorem.words(3),
     };
     return superagent.post(apiUrl)
       .send(mockMotoToPost)

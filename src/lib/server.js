@@ -3,13 +3,13 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import logger from './logger';
-import motoRouter from '../route/moto-router';
+// import motoRouter from '../route/moto-router';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 let server;
 
-app.use(motoRouter);
+// app.use(motoRouter);
 
 app.all('*', (request, response) => {
   logger.log(logger.INFO, 'SERVER: Returning a 404 status from the catch-all default route');
