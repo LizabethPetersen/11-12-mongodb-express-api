@@ -18,7 +18,6 @@ const motorcycleSchema = mongoose.Schema({
   },
   year: {
     type: Number,
-    required: true,
   },
   color: {
     type: String,

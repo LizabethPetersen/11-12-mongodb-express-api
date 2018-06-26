@@ -2,38 +2,38 @@
 
 import faker from 'faker';
 import superagent from 'superagent';
-import Note from '../model/build-moto';
+import Moto from '../model/build-moto';
 import { startServer, stopServer } from '../lib/server';
 
-const apiUrl = `http://localhost:${process.env.PORT}/api/v1/motorcycles`;
+const apiUrl = `http://localhost:${process.env.PORT}/api/motorcycles`;
 
 const createMockMotoPromise = () => {
-  return new Note({
-    make: faker.lorem.words(2),
-    model: faker.lorem.words(7),
-    user: faker.lorem.word(1),
+  return new Moto({
+    user: faker.lorem.words(2),
+    make: faker.lorem.words(3),
+    model: faker.lorem.words(3),
   }).save();
 };
 
 beforeAll(startServer);
 afterAll(stopServer);
 
-afterEach(() => Note.remove({}));
+afterEach(() => Moto.remove({}));
 
-describe('Tests POST requests to /api/v1/motorcycles', () => {
+describe('Tests POST requests to /api/motorcycles', () => {
   test('Send 200 for successful build of motorcycle object', () => {
     const mockMotoToPost = {
+      user: faker.lorem.words(2),
       make: faker.lorem.words(3),
       model: faker.lorem.words(3),
-      user: faker.lorem.word(1),
     };
     return superagent.post(apiUrl)
       .send(mockMotoToPost)
       .then((response) => {
         expect(response.status).toEqual(200);
+        expect(response.body.user).toEqual(mockMotoToPost.user);
         expect(response.body.make).toEqual(mockMotoToPost.make);
         expect(response.body.model).toEqual(mockMotoToPost.model);
-        expect(response.body.user).toEqual(mockMotoToPost.user);
         expect(response.body._id).toBeTruthy();
         expect(response.body.createdOn).toBeTruthy();
       })
@@ -42,8 +42,9 @@ describe('Tests POST requests to /api/v1/motorcycles', () => {
       });
   });
 
-  test('Send 400 for not including a required MAKE property', () => {
+  test('Send 400 for not including a required make property', () => {
     const mockMotoToPost = {
+      user: faker.lorem.words(2),
       model: faker.lorem.words(3),
     };
     return superagent.post(apiUrl)
@@ -60,7 +61,7 @@ describe('Tests POST requests to /api/v1/motorcycles', () => {
     return createMockMotoPromise()
       .then((newMoto) => {
         return superagent.post(apiUrl)
-          .send({ make: newMoto.make, user: newMoto.user })
+          .send({ user: newMoto.user, make: newMoto.make, model: newMoto.model })
           .then((response) => {
             throw response;
           })
