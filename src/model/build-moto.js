@@ -24,7 +24,7 @@ const motorcycleSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    maxLength: 147,
+    minLength: 20,
   },
   createdOn: {
     type: Date,
