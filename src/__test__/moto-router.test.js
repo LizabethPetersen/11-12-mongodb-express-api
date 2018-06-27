@@ -42,9 +42,9 @@ describe('Tests POST requests to /api/motorcycles', () => {
       });
   });
 
-  test('Send 400 for not including a required make property', () => {
+  test('Send 400 for not including a required user property', () => {
     const mockMotoToPost = {
-      user: faker.lorem.words(2),
+      make: faker.lorem.words(3),
       model: faker.lorem.words(3),
     };
     return superagent.post(apiUrl)

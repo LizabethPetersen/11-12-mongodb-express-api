@@ -14,8 +14,8 @@ const devLogger = winston.createLogger({
 devLogger.INFO = 'info';
 devLogger.ERROR = 'error';
 
-const produdctionLogger = {
+const productionLogger = {
   log: () => ({}),
 };
 
-module.exports = process.env.NODE_ENV === 'production' ? produdctionLogger : devLogger;
+module.exports = process.env.NODE_ENV === 'production' ? productionLogger : devLogger;

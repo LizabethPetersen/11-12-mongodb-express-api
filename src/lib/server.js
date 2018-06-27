@@ -5,11 +5,18 @@ import mongoose from 'mongoose';
 import logger from './logger';
 import motoRouter from '../route/moto-router';
 
+import loggerMiddleware from '../lib/middleware/logger-middleware';
+import errorMiddleware from '../lib/middleware/error-middleware';
+
 const app = express();
 const PORT = process.env.PORT || 3000;
-let server;
+let server = null;
+
+app.use(loggerMiddleware);
 
 app.use(motoRouter);
+
+app.use(errorMiddleware);
 
 app.all('*', (request, response) => {
   logger.log(logger.INFO, 'SERVER: Returning a 404 status from the catch-all default route');
