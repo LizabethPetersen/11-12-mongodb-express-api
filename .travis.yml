@@ -3,5 +3,3 @@ node_js:
   - "node"
 services:
   - mongodb
-install: 
-  - travis_wait mvn install
