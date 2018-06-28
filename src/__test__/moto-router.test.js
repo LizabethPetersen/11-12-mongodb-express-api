@@ -126,14 +126,28 @@ describe('Tests PUT requests to api/motorcycles', () => {
   });
 });
 
-// describe('Tests DELETE requests to api/motorcycles', () => {
-// test('Sends 200 for successful delete of one object', () => {
-// return superagent.delete(`${apiUrl}/${mockMotoForGet._id}`)
-// .then((response) => {
-// expect(response.status).toEqual(200);
-// })
-// .catch((err) => {
-// throw err;
-// });
-// });
-// });
+describe('Tests DELETE requests to api/motorcycles', () => {
+  test('Sends 204 for successful deletion of one object', () => {
+    let mockMotoForDelete;
+    return createMockMotoPromise()
+      .then((testMoto) => {
+        mockMotoForDelete = testMoto;
+        return superagent.delete(`${apiUrl}/${mockMotoForDelete._id}`);
+      })
+      .then((response) => {
+        expect(response.status).toEqual(204);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
+  test('Send 404 DELETE: no motorcycle with this id', () => {
+    return superagent.delete(`${apiUrl}/THISISABADID`)
+      .then((response) => {
+        throw response;
+      })
+      .catch((err) => {
+        expect(err.status).toEqual(404);
+      });
+  });
+});
