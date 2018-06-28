@@ -76,7 +76,7 @@ motoRouter.delete('/api/motorcycles/:id?', (request, response, next) => {
     logger.log(logger.INFO, 'Moto-Router DELETE /api/motorcycles: Responding with a 400 error code for no objects found');
     return response.sendStatus(400);
   }
-  return Moto.findByIdAndRemove({ _id: request.params.id })
+  return Moto.findByIdAndRemove(request.params.id)
     .then((moto) => {
       if (!moto) {
         logger.log(logger.INFO, 'DELETE: Responding with 404 status code for no motorcycle found');
