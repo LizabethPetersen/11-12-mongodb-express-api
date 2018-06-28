@@ -132,7 +132,7 @@ describe('Tests DELETE requests to api/motorcycles', () => {
     return createMockMotoPromise()
       .then((testMoto) => {
         mockMotoForDelete = testMoto;
-        return superagent.get(`${apiUrl}/${mockMotoForDelete._id}`);
+        return superagent.delete(`${apiUrl}/${mockMotoForDelete._id}`);
       })
       .then((response) => {
         expect(response.status).toEqual(204);
